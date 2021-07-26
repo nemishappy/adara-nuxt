@@ -7,7 +7,7 @@
       <v-row>
         <v-col cols="12">
           <div class="mt-8 text-primary text-title text-center">
-            Step 1 of 2
+            Welcome
           </div>
         </v-col>
         <v-col cols="12" class="text-center pb-0 profile-img">
@@ -25,15 +25,11 @@
         <v-col cols="12">
           <v-form>
             <v-text-field
-              v-model="form.firstname"
+              v-model="uid"
               dense
-              label="Firstname"
-            ></v-text-field>
-            <v-text-field
-              v-model="form.lastname"
-              dense
-              label="Lastname"
-            ></v-text-field>
+              label="uid"
+            >{{ getLine.userId }}
+            </v-text-field>
 
             <v-btn
               rounded
@@ -60,8 +56,7 @@ export default {
       .then(() => {
         if (liff.isLoggedIn()) {
           liff.getProfile().then((profile) => {
-              console.log(profile)
-            // this.$store.dispatch('setLine', profile)
+            this.$store.dispatch('setLine', profile)
             // this.isDone()
           })
         } else {
@@ -77,10 +72,7 @@ export default {
   },
   data() {
     return {
-      form: {
-        firstname: '',
-        lastname: '',
-      },
+      uid: this.$store.getters.getLine.userId,
     }
   },
   methods: {
