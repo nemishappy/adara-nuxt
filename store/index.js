@@ -1,21 +1,45 @@
 export const state = () => ({
-    value: 'myvalue'
+  dialog: {
+    isShow: false,
+    title: '',
+    message: '',
+  },
+  line: {
+    pictureUrl: null,
+    displayName: 'name',
+    userId: null,
+  },
 })
 
 export const getters = {
-    getterValue: state => {
-        return state.value
-    }
+  getDialog(state) {
+    return state.dialog
+  },
+  getLine(state) {
+    return state.line
+  },
 }
 
 export const mutations = {
-    updateValue: (state, payload) => {
-        state.value = payload
+  SET_DIALOG(state, data) {
+    state.dialog = {
+      ...state.dialog,
+      ...data,
     }
+  },
+  SET_LINE(state, data) {
+    state.line = {
+      ...state.line,
+      ...data,
+    }
+  },
 }
 
 export const actions = {
-    updateActionValue({ commit }) {
-        commit('updateValue', payload)
-    }
+  setDialog({ commit }, data) {
+    commit('SET_DIALOG', data)
+  },
+  setLine({ commit }, data) {
+    commit('SET_LINE', data)
+  },
 }
