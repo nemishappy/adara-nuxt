@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar color="primary" dense flat dark>
-      <v-toolbar-title>Register</v-toolbar-title>
+      <v-toolbar-title>Login</v-toolbar-title>
     </v-app-bar>
     <v-container class="pt-0 pb-0">
       <v-row>
@@ -12,7 +12,7 @@
         </v-col>
         <v-col cols="12" class="text-center pb-0 profile-img">
           <img
-            v-if="getLine.pictureUrl == ''"
+            v-if="getLine.pictureUrl == null"
             src="~/assets/profile.png"
             alt=""
             width="155"
@@ -34,7 +34,7 @@
               dense
               label="Lastname"
             ></v-text-field>
-            
+
             <v-btn
               rounded
               color="primary"
@@ -60,61 +60,58 @@ export default {
       .then(() => {
         if (liff.isLoggedIn()) {
           liff.getProfile().then((profile) => {
-            this.$store.dispatch('setLine', profile)
-            this.isDone()
+              console.log(profile)
+            // this.$store.dispatch('setLine', profile)
+            // this.isDone()
           })
         } else {
-          liff.login({ redirectUri: "https://7d0c641f565b.ngrok.io/auth/signin" })
+          liff.login()
         }
       })
+      .catch((err) => console.error(err))
   },
   computed: {
-    getLine(){
-      return this.$store.getters.getLine;      
-    }
+    getLine() {
+      return this.$store.getters.getLine
+    },
   },
-  data(){    
-    return {      
+  data() {
+    return {
       form: {
         firstname: '',
         lastname: '',
-      },      
+      },
     }
   },
-  methods: {    
-    isDone(){
-    //   this.$axios.get(`https://nuxt-tutor.firebaseio.com/members/${this.$store.getters.getLine.userId}/profile.json`).then((res) => {
-    //     if(res.data != null){
-    //       this.$router.push('register/done');
-    //     }
-    //   });
+  methods: {
+    isDone() {
+      //   this.$axios.get(`https://nuxt-tutor.firebaseio.com/members/${this.$store.getters.getLine.userId}/profile.json`).then((res) => {
+      //     if(res.data != null){
+      //       this.$router.push('register/done');
+      //     }
+      //   });
     },
-    validate(){
+    validate() {
       let validated = true
       const errors = []
-      const validatorField = [
-        'firstname',
-        'lastname'
-      ]
+      const validatorField = ['firstname', 'lastname']
       validatorField.forEach((field) => {
-        if(this.form[field] == ''){
+        if (this.form[field] == '') {
           validated = false
           errors.push(`${field} can not be null`)
         }
       })
-      if(!validated){
+      if (!validated) {
         this.$store.dispatch('setDialog', {
           isShow: true,
           title: 'Form is error',
-          message: errors.map((error) => error+'<br/>').join('')
-        })        
+          message: errors.map((error) => error + '<br/>').join(''),
+        })
       }
       return validated
     },
-    next(){      
-          
-    }
-  }
+    next() {},
+  },
 }
 </script>
 
