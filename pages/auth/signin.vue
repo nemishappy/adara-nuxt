@@ -64,7 +64,7 @@ export default {
             this.isDone()
           })
         } else {
-          liff.login()
+          liff.login({ redirectUri: "https://7d0c641f565b.ngrok.io/auth/signin" })
         }
       })
   },
