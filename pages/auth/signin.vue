@@ -24,12 +24,8 @@
         </v-col>
         <v-col cols="12">
           <v-form>
-            <v-text-field
-              v-model="uid"
-              dense
-              label="uid"
-            >{{ getLine.userId }}
-            </v-text-field>
+            <p class="mb-0">uid:</p>
+            <p>{{ getLine.userId }}</p>
 
             <v-btn
               rounded
