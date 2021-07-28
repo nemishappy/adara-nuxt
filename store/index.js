@@ -6,9 +6,13 @@ export const state = () => ({
   },
   line: {
     pictureUrl: null,
-    displayName: 'name',
-    userId: null,
+    displayName: 'Display name',
+    userId: '999999999',
   },
+  member: {
+      totalOrder: '',
+      netTotal: '',
+  }
 })
 
 export const getters = {
@@ -17,6 +21,9 @@ export const getters = {
   },
   getLine(state) {
     return state.line
+  },
+  getMember(state) {
+    return state.member
   },
 }
 
@@ -33,6 +40,12 @@ export const mutations = {
       ...data,
     }
   },
+  SET_MEMBER(state, data) {
+    state.member = {
+      ...state.member,
+      ...data,
+    }
+  },
 }
 
 export const actions = {
@@ -41,5 +54,8 @@ export const actions = {
   },
   setLine({ commit }, data) {
     commit('SET_LINE', data)
+  },
+  setMember({ commit }, data) {
+    commit('SET_MEMBER', data)
   },
 }

@@ -48,15 +48,17 @@ export default {
       '@nuxtjs/firebase',
       {
         config: {
-          apiKey: "AIzaSyDlBCUbqOv-Cd2xLfd79rO40zqS-DR7Vkg",
-          authDomain: "adara-nuxt.firebaseapp.com",
-          projectId: "adara-nuxt",
-          storageBucket: "adara-nuxt.appspot.com",
-          messagingSenderId: "1081066608101",
-          appId: "1:1081066608101:web:7346029fbbcd002b6dcb0c"
+          apiKey: "AIzaSyAwylkbFj2ZDeLuyAHSrr854C9RgDkDpfY",
+          authDomain: "adaralinebot-wkyk.firebaseapp.com",
+          projectId: "adaralinebot-wkyk",
+          storageBucket: "adaralinebot-wkyk.appspot.com",
+          messagingSenderId: "705464554867",
+          appId: "1:705464554867:web:750cd9db9b9b3866bde106",
+          measurementId: "G-5E90BKRCCX"
         },
         services: {
-          auth: true // Just as example. Can be any other service.
+          auth: true,
+          firestore: true // Just as example. Can be any other service.
         }
       }
     ]

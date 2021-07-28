@@ -53,7 +53,7 @@ export default {
         if (liff.isLoggedIn()) {
           liff.getProfile().then((profile) => {
             this.$store.dispatch('setLine', profile)
-            // this.isDone()
+            this.isDone()
           })
         } else {
           liff.login()
@@ -73,11 +73,24 @@ export default {
   },
   methods: {
     isDone() {
-      //   this.$axios.get(`https://nuxt-tutor.firebaseio.com/members/${this.$store.getters.getLine.userId}/profile.json`).then((res) => {
-      //     if(res.data != null){
-      //       this.$router.push('register/done');
-      //     }
-      //   });
+        const usersRef = this.$fire.firestore.collection('member').doc(this.$store.getters.getLine.userId)
+
+        usersRef.get()
+        .then((docSnapshot) => {
+            if (docSnapshot.exists) {
+            usersRef.onSnapshot((doc) => {
+                this.$store.dispatch('setMember', doc.data())
+            });
+            } else {
+            usersRef.set({
+                totalOrder: 5,
+                netTotal: 999,
+            }) // create the document
+            }
+        })
+        .catch((error) => {
+            console.log("Error getting document:", error);
+        });
     },
     validate() {
       let validated = true
@@ -98,7 +111,10 @@ export default {
       }
       return validated
     },
-    next() {},
+    next() {
+      
+      this.$router.push('/member')
+    },
   },
 }
 </script>
