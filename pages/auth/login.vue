@@ -79,6 +79,7 @@ export default {
         if (docSnapshot.exists) {
           usersRef.onSnapshot((doc) => {
             this.$store.dispatch('setMember', doc.data())
+            console.log('Document catch! ',this.$store.getters.getMember)
             // do stuff with the data
           })
         } else {

@@ -22,10 +22,10 @@
         <v-col cols="12">
           <v-form>
             <p class="mb-0">Total order:</p>
-            <p>{{ form.totalOrder }}</p>
+            <p>{{ getMember.totalOrder }}</p>
             <br>
             <p class="mb-0">Net total:</p>
-            <p>{{ form.netTotal }}</p>
+            <p>{{ getMember.netTotal }}</p>
 
           </v-form>
         </v-col>
@@ -46,7 +46,12 @@ export default {
                 netTotal: this.$store.getters.getMember.netTotal,
             }
         }
-    }
+    },
+    computed: {
+      getMember() {
+        return this.$store.getters.getMember
+      },
+  },
 }
 </script>
 
