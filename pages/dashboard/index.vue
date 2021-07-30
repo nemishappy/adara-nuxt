@@ -1,11 +1,12 @@
 <template>
   <div class="home" v-if="this.$store.getters.getMemberLoaded">
     <v-toolbar class="mt-5" flat>
+      <v-app-bar-nav-icon @click="toggleMobileNav" v-show="mobile"></v-app-bar-nav-icon>
       <v-toolbar-title class="toolbar-title">
         <span class="caption">Overview Dashboard</span><br>Tranding View
       </v-toolbar-title>
       
-      
+      <v-spacer></v-spacer>
       <div @click="signOut" class="option">
                 <v-icon>mdi-logout</v-icon>
       </div>
@@ -131,6 +132,11 @@ export default {
   name: "dashboard",
   created() {
     this.$store.dispatch("setMembers");
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", this.checkScreen);
+      // browser code
+    }
+    this.checkScreen();
   },
   computed: {
     getMember(){
@@ -138,11 +144,32 @@ export default {
     }
   },
   data: () => ({
+    mobile: null,
+    mobileNav: null,
+    windownWidth: null,
   }),
   methods: {
     signOut(){
       this.$fire.auth.signOut();
       this.$router.push({ name: 'auth-loginadmin' })
+    },
+    checkScreen() {
+      if (typeof window !== "undefined") {
+        // browser code
+        this.windownWidth = window.innerWidth;
+        if (this.windownWidth <= 750) {
+          this.mobile = true;
+          this.toggleMobileNav();
+          return;
+        }
+        this.mobile = false;
+        return;
+      }
+      return;
+    },
+
+    toggleMobileNav() {
+      this.$store.dispatch("setDrawer", !this.$store.getters.getDrawer)
     },
     amount_o(item){
       return item.totalOrder;
@@ -163,7 +190,7 @@ export default {
 }
 .option {
   position: relative;
-  margin-left: 80%;
+  
 }
 .text-desc {
   font-size: 16px;

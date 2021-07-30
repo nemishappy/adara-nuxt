@@ -4,6 +4,7 @@ export const state = () => ({
     title: '',
     message: '',
   },
+  drawer: true,
   line: {
     pictureUrl: null,
     displayName: 'Display name',
@@ -28,6 +29,9 @@ export const getters = {
   getDialog(state) {
     return state.dialog
   },
+  getDrawer(state) {
+    return state.drawer
+  },
   getLine(state) {
     return state.line
   },
@@ -51,6 +55,8 @@ export const mutations = {
       ...state.dialog,
       ...data,
     }
+  },SET_DRAWER (state, data){
+    state.drawer = data
   },
   SET_LINE(state, data) {
     state.line = {
@@ -93,6 +99,9 @@ export const mutations = {
 export const actions = {
   setDialog({ commit }, data) {
     commit('SET_DIALOG', data)
+  },
+  setDrawer({ commit }, data) {
+    commit('SET_DRAWER', data)
   },
   setLine({ commit }, data) {
     commit('SET_LINE', data)
