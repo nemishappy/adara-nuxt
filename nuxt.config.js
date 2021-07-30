@@ -20,6 +20,7 @@ export default {
       { src: 'https://static.line-scdn.net/liff/edge/2.1/sdk.js' }
     ]
   },
+  
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [

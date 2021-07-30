@@ -75,18 +75,13 @@ export default {
     isDone() {
         const usersRef = this.$fire.firestore.collection('member').doc(this.$store.getters.getLine.userId)
 
-        usersRef.get()
-        .then((docSnapshot) => {
-            if (docSnapshot.exists) {
-            usersRef.onSnapshot((doc) => {
-                this.$store.dispatch('setMember', doc.data())
-            });
-            } else {
-            usersRef.set({
+        usersRef.set({
+                profile: this.$store.getters.getLine,
                 totalOrder: 5,
                 netTotal: 999,
-            }) // create the document
-            }
+        })
+        .then(() => {
+                console.log("Document successfully written!");
         })
         .catch((error) => {
             console.log("Error getting document:", error);
@@ -128,29 +123,5 @@ export default {
     border-radius: 50%;
   }
 }
-.gender-group {
-  p {
-    margin-bottom: 0;
-    align-self: center;
-    margin-right: 20px;
-  }
-  .circle {
-    width: 45px;
-    height: 45px;
-    color: #fff;
-    border-radius: 50%;
-    position: relative;
-    background: rgba($color: #000000, $alpha: 0.3);
-    margin-right: 7px;
-    &.active {
-      background: #1a56be;
-    }
-    svg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-}
+
 </style>

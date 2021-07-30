@@ -1,17 +1,46 @@
 <template>
   <v-app >
-    <nuxt></nuxt>
     <Dialog/>
+    <Sidebar v-if="!navigation"/>
+    <v-main>
+      <nuxt></nuxt>
+    </v-main>
   </v-app>
 </template>
 
 <script>
 import Dialog from '~/components/Dialog'
+import Sidebar from '~/components/Sidebar'
+
 
 export default {
   components: {
-    Dialog
-  }
+    Dialog,
+    Sidebar
+  },
+  created(){
+    this.checkRoute();
+  },
+  data() {
+    return {
+      navigation: null,
+    };
+  },
+  methods: {
+    checkRoute() {
+      if (this.$route.name === "auth-login" || this.$route.name === "loginadmin" || this.$route.name === "member" 
+      || this.$route.name === "auth-loginadmin" || this.$route.name === "index") {
+        this.navigation = true;
+        return;
+      }
+      this.navigation = false;
+    }
+  },
+  watch: {
+    $route() {
+      this.checkRoute();
+    },
+  },
 }
 </script>
 
@@ -63,4 +92,5 @@ export default {
   .set-padding{
     padding: 0 10px;
   }
+  
 </style>
