@@ -6,9 +6,7 @@
     <v-container class="pt-0 pb-0">
       <v-row>
         <v-col cols="12">
-          <div class="mt-8 text-primary text-title text-center">
-            Welcome
-          </div>
+          <div class="mt-8 text-primary text-title text-center">Welcome</div>
         </v-col>
         <v-col cols="12" class="text-center pb-0 profile-img">
           <img
@@ -73,41 +71,35 @@ export default {
   },
   methods: {
     isDone() {
-        const usersRef = this.$fire.firestore.collection('member').doc(this.$store.getters.getLine.userId)
+      const usersRef = this.$fire.firestore
+        .collection('member')
+        .doc(this.$store.getters.getLine.userId)
 
-        usersRef.set({
-                profile: this.$store.getters.getLine,
-                totalOrder: 5,
-                netTotal: 999,
-        })
-        .then(() => {
-                console.log("Document successfully written!");
-        })
-        .catch((error) => {
-            console.log("Error getting document:", error);
-        });
-    },
-    validate() {
-      let validated = true
-      const errors = []
-      const validatorField = ['firstname', 'lastname']
-      validatorField.forEach((field) => {
-        if (this.form[field] == '') {
-          validated = false
-          errors.push(`${field} can not be null`)
+      usersRef.get().then((docSnapshot) => {
+        if (docSnapshot.exists) {
+          usersRef.onSnapshot((doc) => {
+            this.$store.dispatch('setMember', doc.data())
+            // do stuff with the data
+          })
+        } else {
+          // create the document
+          usersRef
+            .set({
+              profile: this.$store.getters.getLine,
+              totalOrder: 5,
+              netTotal: 999,
+            })
+            .then(() => {
+              console.log('Document successfully written!')
+            })
+            .catch((error) => {
+              console.log('Error getting document:', error)
+            })
         }
       })
-      if (!validated) {
-        this.$store.dispatch('setDialog', {
-          isShow: true,
-          title: 'Form is error',
-          message: errors.map((error) => error + '<br/>').join(''),
-        })
-      }
-      return validated
     },
+    
     next() {
-      
       this.$router.push('/member')
     },
   },
@@ -123,5 +115,4 @@ export default {
     border-radius: 50%;
   }
 }
-
 </style>

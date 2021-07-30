@@ -10,6 +10,7 @@ export const state = () => ({
     userId: '999999999',
   },
   member: {
+      userId: null,
       totalOrder: '',
       netTotal: '',
   },
