@@ -157,7 +157,7 @@ export default {
       if (typeof window !== "undefined") {
         // browser code
         this.windownWidth = window.innerWidth;
-        if (this.windownWidth <= 750) {
+        if (this.windownWidth <= 850) {
           this.mobile = true;
           this.toggleMobileNav();
           return;
