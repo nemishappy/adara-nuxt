@@ -1,6 +1,5 @@
 <template>
   <div v-if="currentMember">
-    <Loading v-show="loading" />
     <v-container class="pt-0 pb-0">
       <v-row>
         <v-col cols="12">
@@ -122,6 +121,9 @@ export default {
   methods: {
     async save() {
         const dataBase = await this.$fire.firestore.collection("member").doc(this.routeID);
+        if(this.Name == null){
+          this.Name = this.displayName
+        }
         if (this.Name.length !== 0 && this.totalOrder !== null && this.netTotal !== null){
             this.$nuxt.$loading.start()
             await dataBase.update({

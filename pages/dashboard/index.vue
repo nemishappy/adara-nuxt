@@ -11,92 +11,94 @@
       </div>
     </v-toolbar>
     <v-container class="mt-5">
-      <v-row>
-        <v-col cols="12" sm="4">
-          <v-hover v-slot="{ hover }" open-delay="200">
-            <v-card color="cyan darken-1" :elevation="hover ? 16 : 2">
-              <v-row>
-                <v-col cols="12" sm="8">
-                  <v-list-item three-line>
-                    <v-list-item-content>
-                      <div class="mb-4">
-                        <v-btn fab color="cyan lighten-2" elevation="0">
-                          <v-icon color="white">mdi-currency-usd</v-icon>
-                        </v-btn>
-                      </div>
-                      <v-list-item-title class="headline mb-1 white--text">
-                        ฿{{ getMember.map(amount_m).reduce(sum) }}
-                      </v-list-item-title>
-                      <v-list-item-subtitle class="white--text">ยอดเงินสุทธิทั้งหมด</v-list-item-subtitle>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-col>
-                <v-col cols="12" sm="4">
-                  <v-avatar size="100" class="ml-n10 mt-6" tile>
-                    <img src="~/assets/wallet.png" alt="" />
-                  </v-avatar>
-                </v-col>
-              </v-row>
-            </v-card>
-          </v-hover>
-        </v-col>
-        <v-col cols="12" sm="4">
-          <v-hover v-slot="{hover }" open-delay="200">
-            <v-card color="pink darken-1" :elevation="hover ? 16 : 2">
-              <v-row>
-                <v-col cols="12" sm="8">
-                  <v-list-item three-line>
-                    <v-list-item-content>
-                      <div class="mb-4">
-                        <v-btn fab color="pink lighten-2" elevation="0">
-                          <v-icon color="white">mdi-cart-check</v-icon>
-                        </v-btn>
-                      </div>
-                      <v-list-item-title class="headline mb-1 white--text">
-                        {{ getMember.map(amount_o).reduce(sum) }}
-                      </v-list-item-title>
-                      <v-list-item-subtitle class="white--text">ยอดออร์เดอร์สั่งซื้อทั้งหมด</v-list-item-subtitle>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-col>
-                <v-col cols="12" sm="4">
-                  <v-avatar size="100" class="ml-n10 mt-6" tile>
-                    <img src="~/assets/wallet.png" alt="" />
-                  </v-avatar>
-                </v-col>
-              </v-row>
-            </v-card>
-          </v-hover>
-        </v-col>
-        <v-col cols="12" sm="4">
-          <v-hover v-slot="{ hover }" open-delay="200">
-            <v-card color="orange darken-1" :elevation="hover ? 16 :2">
-              <v-row>
-                <v-col cols="12" sm="8">
-                  <v-list-item three-line>
-                    <v-list-item-content>
-                      <div class="mb-4">
-                        <v-btn fab color="orange lighten-2" elevation="0">
-                          <v-icon color="white">mdi-account-check-outline</v-icon>
-                        </v-btn>
-                      </div>
-                      <v-list-item-title class="headline mb-1 white--text">
-                        {{ getMember.length }}
-                      </v-list-item-title>
-                      <v-list-item-subtitle class="white--text">ตัวแทนทั้งหมด</v-list-item-subtitle>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-col>
-                <v-col cols="12" sm="4">
-                  <v-avatar size="100" class="ml-n10 mt-6" tile>
-                    <img src="~/assets/wallet.png" alt="" />
-                  </v-avatar>
-                </v-col>
-              </v-row>
-            </v-card>
-          </v-hover>
-        </v-col>
-      </v-row>
+      <v-flex>
+        <v-row>
+          <v-col cols="12" sm="4">
+            <v-hover v-slot="{ hover }" open-delay="200">
+              <v-card color="cyan darken-1" :elevation="hover ? 16 : 2">
+                <v-row>
+                  <v-col cols="12" sm="8">
+                    <v-list-item three-line>
+                      <v-list-item-content>
+                        <div class="mb-4">
+                          <v-btn fab color="cyan lighten-2" elevation="0">
+                            <v-icon color="white">mdi-currency-usd</v-icon>
+                          </v-btn>
+                        </div>
+                        <v-list-item-title class="headline mb-1 white--text">
+                          ฿{{ getMember.map(amount_m).reduce(sum) }}
+                        </v-list-item-title>
+                        <v-list-item-subtitle class="white--text">ยอดเงินสุทธิทั้งหมด</v-list-item-subtitle>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-col>
+                  <v-col cols="12" sm="4">
+                    <v-avatar size="100" class="ml-n10 mt-6" tile>
+                      <img src="~/assets/wallet.png" alt="" />
+                    </v-avatar>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-hover>
+          </v-col>
+          <v-col cols="12" sm="4">
+            <v-hover v-slot="{hover }" open-delay="200">
+              <v-card color="pink darken-1" :elevation="hover ? 16 : 2">
+                <v-row>
+                  <v-col cols="12" sm="8">
+                    <v-list-item three-line>
+                      <v-list-item-content>
+                        <div class="mb-4">
+                          <v-btn fab color="pink lighten-2" elevation="0">
+                            <v-icon color="white">mdi-cart-check</v-icon>
+                          </v-btn>
+                        </div>
+                        <v-list-item-title class="headline mb-1 white--text">
+                          {{ getMember.map(amount_o).reduce(sum) }}
+                        </v-list-item-title>
+                        <v-list-item-subtitle class="white--text">ยอดออร์เดอร์สั่งซื้อทั้งหมด</v-list-item-subtitle>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-col>
+                  <v-col cols="12" sm="4">
+                    <v-avatar size="100" class="ml-n10 mt-6" tile>
+                      <img src="~/assets/wallet.png" alt="" />
+                    </v-avatar>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-hover>
+          </v-col>
+          <v-col cols="12" sm="4">
+            <v-hover v-slot="{ hover }" open-delay="200">
+              <v-card color="orange darken-1" :elevation="hover ? 16 :2">
+                <v-row>
+                  <v-col cols="12" sm="8">
+                    <v-list-item three-line>
+                      <v-list-item-content>
+                        <div class="mb-4">
+                          <v-btn fab color="orange lighten-2" elevation="0">
+                            <v-icon color="white">mdi-account-check-outline</v-icon>
+                          </v-btn>
+                        </div>
+                        <v-list-item-title class="headline mb-1 white--text">
+                          {{ getMember.length }}
+                        </v-list-item-title>
+                        <v-list-item-subtitle class="white--text">ตัวแทนทั้งหมด</v-list-item-subtitle>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-col>
+                  <v-col cols="12" sm="4">
+                    <v-avatar size="100" class="ml-n10 mt-6" tile>
+                      <img src="~/assets/wallet.png" alt="" />
+                    </v-avatar>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-hover>
+          </v-col>
+        </v-row>
+      </v-flex>
       <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg3 v-for="person in getMember" :key="person.userId">
           <v-card class="text-center ma-3">

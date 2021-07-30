@@ -123,8 +123,9 @@ export const actions = {
   }
   ,
   async updateMember({ commit , dispatch }, data) {
-    
+    commit('SET_LOADED', false)
     commit('UPDATE_MEMBERS', data)
+    
     await dispatch("setMembers");
   },
 }
