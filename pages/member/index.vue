@@ -3,7 +3,7 @@
     <v-app-bar color="primary" dense flat dark>
       <v-toolbar-title>Report</v-toolbar-title>
     </v-app-bar>
-    <v-container class="pt-0 pb-0">
+    <v-container class="pt-0 pb-0" v-if="getMember">
       <v-row>
         <v-col cols="12">
           <div class="mt-8 text-primary text-title text-center">

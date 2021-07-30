@@ -131,7 +131,13 @@ export default {
             });
             this.$store.dispatch("updateMember",this.routeID)
             this.$nuxt.$loading.finish()
+            this.$store.dispatch("setDialog",{
+              isShow: true,
+              title: 'Save successful',
+              message: 'Press Close to continue',
+            })
             this.$router.push({name: 'dashboard'})
+            
             return;
         }
         this.error = true;
