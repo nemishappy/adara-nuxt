@@ -132,10 +132,7 @@ export default {
   name: "dashboard",
   created() {
     this.$store.dispatch("setMembers");
-    // if (typeof window !== "undefined") {
-    //   window.addEventListener("resize", this.checkScreen);
-    //   // browser code
-    // }
+
     this.checkScreen();
   },
   computed: {
@@ -170,7 +167,7 @@ export default {
 
     MobileNav() {
       this.$store.dispatch("setDrawer", !this.$store.getters.getDrawer)
-      this.$store.dispatch("setDrawer", !this.$store.getters.getDrawer)
+
     },
     toggleMobileNav() {
       this.$store.dispatch("setDrawer", !this.$store.getters.getDrawer)
