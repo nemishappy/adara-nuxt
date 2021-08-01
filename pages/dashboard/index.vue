@@ -20,7 +20,7 @@
           flat
           tile
         >
-          <v-card class="pa-2 my-3 mx-1 my-card" color="cyan darken-1"  tile>
+          <v-card class="pa-2 my-3 mx-1 my-card" color="cyan darken-1"  >
             <v-list-item three-line>
               <v-list-item-content>
                 <div class="white--text mb-4">ยอดเงินสุทธิทั้งหมด</div>
@@ -38,7 +38,7 @@
               >
             </v-list-item>
           </v-card>
-          <v-card class="pa-2 my-3 mx-1 my-card" color="pink darken-1" tile>
+          <v-card class="pa-2 my-3 mx-1 my-card" color="pink darken-1" >
             <v-list-item three-line>
               <v-list-item-content>
                 <div class=" white--text mb-4">ยอดออร์เดอร์สั่งซื้อทั้งหมด</div>
@@ -56,7 +56,7 @@
               >
             </v-list-item>
           </v-card>
-          <v-card class="pa-2 my-3 mx-1 my-card" color="orange darken-1" tile>
+          <v-card class="pa-2 my-3 mx-1 my-card" color="orange darken-1" >
             <v-list-item three-line>
               <v-list-item-content>
                 <div class="white--text mb-4">ตัวแทนทั้งหมด</div>
