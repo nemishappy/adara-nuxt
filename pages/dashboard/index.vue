@@ -1,7 +1,7 @@
 <template>
   <div class="home" v-if="this.$store.getters.getMemberLoaded">
     <v-toolbar class="mt-5" flat>
-      <v-app-bar-nav-icon class="hidden-md-and-up" @click="toggleMobileNav" ></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon class="hidden-md-and-up" @click="MobileNav" ></v-app-bar-nav-icon>
       <v-toolbar-title class="toolbar-title">
         <span class="caption">Overview Dashboard</span><br>Tranding View
       </v-toolbar-title>
@@ -168,6 +168,9 @@ export default {
       return;
     },
 
+    MobileNav() {
+      this.$store.dispatch("setDrawer", true)
+    },
     toggleMobileNav() {
       this.$store.dispatch("setDrawer", !this.$store.getters.getDrawer)
     },
