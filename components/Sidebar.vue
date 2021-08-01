@@ -1,7 +1,10 @@
 <template>
   <v-navigation-drawer
     v-model="getDrawer"
-    
+    v-click-outside="{
+      handler: onClickOutsideWithConditional,
+      closeConditional,
+    }"
     :permanent="$vuetify.breakpoint.mdAndUp"
     color="#F4F5F9"
     app
@@ -10,11 +13,15 @@
       <v-list-item-title class="text-title" align="center">
         <v-icon x-large>mdi-chart-box-outline</v-icon> Adara
       </v-list-item-title>
-      
     </v-list-item>
     <v-list nav dense>
       <v-list-item-group v-model="selectedItem" color="primary">
-        <v-list-item v-for="(item, i) in items" :key="i" :to="item.route" @click="setDrawer">
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+          :to="item.route"
+          @click="setDrawer"
+        >
           <v-list-item-icon>
             <v-icon v-text="item.icon"></v-icon>
           </v-list-item-icon>
@@ -25,7 +32,7 @@
       </v-list-item-group>
     </v-list>
     <template v-slot:append>
-      <div class="text-center mb-3" >Bata dashboard</div>
+      <div class="text-center mb-3">Bata dashboard</div>
     </template>
   </v-navigation-drawer>
 </template>
@@ -37,25 +44,36 @@ export default {
     items: [
       { icon: 'mdi-home-analytics', text: 'Dashboard', route: '/dashboard' },
     ],
-    
+    conditional: false,
   }),
   computed: {
     getDrawer: {
-        get(){
-            return this.$store.getters.getDrawer
-        },
-        set(payload){
-            this.drawer = payload
-        }
+      get() {
+        return this.$store.getters.getDrawer
+      },
+      set(payload) {
+        this.drawer = payload
+      },
     },
-    keepOpen(){ return this.onClickOutside },
+    keepOpen() {
+      return this.onClickOutside
+    },
   },
   methods: {
-      onClickOutside() { return true; },
-      setDrawer() {
-    this.$store.dispatch("setDrawer", false);
-    }
+    onClickOutside() {
+      return true
     },
+    setDrawer() {
+      this.$store.dispatch('setDrawer', false)
+    },
+    onClickOutsideWithConditional() {
+      this.conditional = false
+    },
+    closeConditional(e) {
+      return this.conditional
+    },
+  },
+  
 }
 </script>
 <style scoped>
