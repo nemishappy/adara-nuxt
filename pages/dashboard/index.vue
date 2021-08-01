@@ -1,7 +1,7 @@
 <template>
   <div class="home" v-if="this.$store.getters.getMemberLoaded">
     <v-toolbar class="mt-5" flat>
-      <v-app-bar-nav-icon @click="toggleMobileNav" v-show="mobile"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon class="hidden-md-and-up" @click="toggleMobileNav" ></v-app-bar-nav-icon>
       <v-toolbar-title class="toolbar-title">
         <span class="caption">Overview Dashboard</span><br>Tranding View
       </v-toolbar-title>
@@ -132,10 +132,10 @@ export default {
   name: "dashboard",
   created() {
     this.$store.dispatch("setMembers");
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", this.checkScreen);
-      // browser code
-    }
+    // if (typeof window !== "undefined") {
+    //   window.addEventListener("resize", this.checkScreen);
+    //   // browser code
+    // }
     this.checkScreen();
   },
   computed: {

@@ -2,7 +2,7 @@
   <v-navigation-drawer
     v-model="getDrawer"
     
-    
+    :permanent="$vuetify.breakpoint.mdAndUp"
     color="#F4F5F9"
     app
   >
