@@ -28,12 +28,11 @@ export default {
   },
   methods: {
     checkRoute() {
-      if (this.$route.name === "auth-login" || this.$route.name === "loginadmin" || this.$route.name === "member" 
-      || this.$route.name === "auth-loginadmin" || this.$route.name === "index") {
-        this.navigation = true;
+      if (this.$route.name === "dashboard" || this.$route.name === "member-uid" ) {
+        this.navigation = false;
         return;
       }
-      this.navigation = false;
+      this.navigation = true;
     }
   },
   watch: {

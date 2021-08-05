@@ -6,7 +6,7 @@ export const state = () => ({
   },
   drawer: true,
   line: {
-    pictureUrl: null,
+    pictureUrl: '',
     displayName: 'Display name',
     userId: '999999999',
   },
@@ -22,6 +22,14 @@ export const state = () => ({
     Name: null,
     totalOrder: null,
     netTotal: null,
+  },
+  register: {
+    firstname: '',
+    lastname: '',
+    gender: 1,
+    email: '',
+    phone: '',
+    birthday: new Date().toISOString().substr(0, 10),
   },
 })
 
@@ -46,6 +54,9 @@ export const getters = {
   },
   getEditMember(state) {
     return state.currentEditMember
+  },
+  getRegister(state) {
+    return state.register
   },
 }
 
@@ -94,6 +105,12 @@ export const mutations = {
   SET_NET(state, data) {
     state.currentEditMember.netTotal = data
   },
+  SET_REGISTER(state, data) {
+    state.register = {
+    ...state.register,
+      ...data,
+    }
+  },
 }
 
 export const actions = {
@@ -108,6 +125,9 @@ export const actions = {
   },
   setMember({ commit }, data) {
     commit('SET_MEMBER', data)
+  },
+  setRegister({ commit }, data) {
+    commit('SET_REGISTER', data)
   },
   async setMembers({ commit, getters }) {
     const dataBase = this.$fire.firestore.collection("member");

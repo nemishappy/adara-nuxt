@@ -43,21 +43,22 @@
 <script>
 export default {
   mounted() {
-    liff
-      .init({
-        liffId: '1656228840-yn8XQ9ar',
-      })
-      .then(() => {
-        if (liff.isLoggedIn()) {
-          liff.getProfile().then((profile) => {
-            this.$store.dispatch('setLine', profile)
-            this.isDone()
-          })
-        } else {
-          liff.login()
-        }
-      })
-      .catch((err) => console.error(err))
+    // liff
+    //   .init({
+    //     liffId: '1656228840-yn8XQ9ar',
+    //   })
+    //   .then(() => {
+    //     if (liff.isLoggedIn()) {
+    //       liff.getProfile().then((profile) => {
+    //         this.$store.dispatch('setLine', profile)
+    //         this.isDone()
+    //       })
+    //     } else {
+    //       liff.login()
+    //     }
+    //   })
+    //   .catch((err) => console.error(err))
+    this.isDone()
   },
   computed: {
     getLine() {
@@ -74,12 +75,11 @@ export default {
       const usersRef = this.$fire.firestore
         .collection('member')
         .doc(this.$store.getters.getLine.userId)
-
       usersRef.get().then((docSnapshot) => {
         if (docSnapshot.exists) {
           usersRef.onSnapshot((doc) => {
             this.$store.dispatch('setMember', doc.data())
-            console.log('Document catch! ',this.$store.getters.getMember)
+            console.log('Document catch!')
             // do stuff with the data
           })
         } else {

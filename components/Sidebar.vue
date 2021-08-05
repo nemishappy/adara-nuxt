@@ -2,7 +2,6 @@
   <v-navigation-drawer
     v-model="getDrawer"
     v-click-outside="{
-      handler: onClickOutsideWithConditional,
       closeConditional,
     }"
     :permanent="$vuetify.breakpoint.mdAndUp"
