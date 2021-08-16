@@ -18,6 +18,7 @@ export default {
     ],
     script: [
       { src: 'https://static.line-scdn.net/liff/edge/2.1/sdk.js' },
+      { src: '~/asset/raw_database.json' },
     
     ]
   },
@@ -60,7 +61,7 @@ export default {
         },
         services: {
           auth: true,
-          firestore: true // Just as example. Can be any other service.
+          firestore: true 
         }
       }
     ]
@@ -79,6 +80,7 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
+    
     theme: {
       dark: false,
       themes: {

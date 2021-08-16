@@ -28,7 +28,8 @@ export default {
   },
   methods: {
     checkRoute() {
-      if (this.$route.name === "dashboard" || this.$route.name === "member-uid" ) {
+      if (this.$route.name === "dashboard" || this.$route.name === "member-uid" 
+      || this.$route.name === "test" ) {
         this.navigation = false;
         return;
       }

@@ -11,7 +11,7 @@
           </div>
         </v-col>
         <v-col cols="12">
-          <v-form>
+          <v-form v-if="thailand">
             <p class="text-center text-main mb-0 mt-4">Tell us more a bit</p>
             <v-text-field
               v-model="form.email"
@@ -62,7 +62,6 @@
               label="บ้านเลขที่"
             ></v-text-field>
             <v-autocomplete
-              v-if="thailand"
               :items="thailand"
               clearable
               dense
@@ -121,19 +120,21 @@
 </template>
 
 <script>
+import data from '~/static/raw_database.json'
 const REGEX_EMAIL =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const REGEX_PHONE = /^[0]([0-9]{9})*$/
 const REGEX_NUMBER = /^[0-9]*$/
 export default {
   async mounted() {
-    await this.$axios
-      .get(
-        `https://raw.githubusercontent.com/earthchie/jquery.Thailand.js/master/jquery.Thailand.js/database/raw_database/raw_database.json`
-      )
-      .then((res) => {
-        this.thailand = res.data
-      })
+    // await this.$axios
+    //   .get(
+    //     `https://raw.githubusercontent.com/earthchie/jquery.Thailand.js/master/jquery.Thailand.js/database/raw_database/raw_database.json`
+    //   )
+    //   .then((res) => {
+    //     this.thailand = res.data
+    //   })
+    this.thailand = data
   },
   computed: {
     selectedAddress: {
