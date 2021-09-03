@@ -59,6 +59,7 @@ export default {
         if (liff.isLoggedIn()) {
           liff.getProfile().then((profile) => {
             this.$store.dispatch('setLine', profile)
+            this.isDone()
           })
         } else {
           liff.login()
@@ -77,6 +78,22 @@ export default {
     }
   },
   methods: {
+    isDone() {
+      const usersRef = this.$fire.firestore
+        .collection('member')
+        .doc(this.$store.getters.getLine.userId)
+      usersRef.get().then((docSnapshot) => {
+        if (docSnapshot.exists) {
+          usersRef.onSnapshot((doc) => {
+            this.$store.dispatch('setMember', doc.data())
+            console.log('Document catch!')
+            this.login()
+          })
+        } else {
+          this.register()
+        }
+      })
+    },
     register() {
       this.$router.push('/register')
     },

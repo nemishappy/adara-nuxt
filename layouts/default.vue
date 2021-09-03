@@ -1,7 +1,9 @@
 <template>
   <v-app >
     <Dialog/>
+    
     <Sidebar v-if="!navigation"/>
+    <Toolbar v-if="!toolbar"/>
     <v-main>
       <nuxt></nuxt>
     </v-main>
@@ -11,12 +13,14 @@
 <script>
 import Dialog from '~/components/Dialog'
 import Sidebar from '~/components/Sidebar'
+import Toolbar from '~/components/ToolBar'
 
 
 export default {
   components: {
     Dialog,
-    Sidebar
+    Sidebar,
+    Toolbar
   },
   created(){
     this.checkRoute();
@@ -24,16 +28,19 @@ export default {
   data() {
     return {
       navigation: null,
+      toolbar: null,
     };
   },
   methods: {
     checkRoute() {
-      if (this.$route.name === "dashboard" || this.$route.name === "member-uid" 
-      || this.$route.name === "test" ) {
+      if (this.$route.name === "admin-dashboard" || this.$route.name === "admin-dashboard-member-uid" 
+      || this.$route.name === "admin" ) {
         this.navigation = false;
+        this.toolbar = false;
         return;
       }
       this.navigation = true;
+      this.toolbar = true;
     }
   },
   watch: {

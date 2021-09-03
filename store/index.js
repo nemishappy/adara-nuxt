@@ -31,6 +31,13 @@ export const state = () => ({
     phone: '',
     birthday: new Date().toISOString().substr(0, 10),
   },
+  user: {
+    firstname: 'Firstname',
+    lastname: 'Lastname',
+    email: '',
+    phone: '',
+    expdate: '-',
+  }
 })
 
 export const getters = {
@@ -58,6 +65,9 @@ export const getters = {
   getRegister(state) {
     return state.register
   },
+  getUser(state){
+    return state.user
+  }
 }
 
 export const mutations = {
@@ -111,6 +121,12 @@ export const mutations = {
       ...data,
     }
   },
+  SET_USER(state, data) {
+    state.user = {
+      ...state.user,
+      ...data,
+    }
+  }
 }
 
 export const actions = {
@@ -157,4 +173,9 @@ export const actions = {
     
     await dispatch("setMembers");
   },
+  async setUser ({ commit }){
+    const dataBase = await this.$fire.firestore.collection("admin").doc(this.$fire.auth().currentUser.uid);
+    const dbResults = await dataBase.get();
+    commit("SET_USER", user);
+  }
 }

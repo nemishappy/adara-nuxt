@@ -22,8 +22,7 @@
         </v-col>
         <v-col cols="12">
           <v-form>
-            <p class="mb-0">uid:</p>
-            <p>{{ getLine.userId }}</p>
+            
 
             <v-btn
               rounded
@@ -58,7 +57,7 @@ export default {
     //     }
     //   })
     //   .catch((err) => console.error(err))
-    this.isDone()
+    // this.isDone()
   },
   computed: {
     getLine() {
@@ -101,7 +100,7 @@ export default {
     },
     
     next() {
-      this.$router.push('/member')
+      this.$router.push('/member/report')
     },
   },
 }

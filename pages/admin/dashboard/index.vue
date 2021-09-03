@@ -1,6 +1,6 @@
 <template>
   <div class="home" v-if="this.$store.getters.getMemberLoaded">
-    <v-toolbar class="mt-5" flat>
+    <!-- <v-toolbar class="mt-5" flat>
       <v-app-bar-nav-icon
         class="hidden-md-and-up"
         @click="toggleMobileNav"
@@ -12,7 +12,7 @@
       <div @click="signOut" class="option">
         <v-icon>mdi-logout</v-icon>
       </div>
-    </v-toolbar>
+    </v-toolbar> -->
     <v-container class="mt-5">
       <div>
         <v-card
@@ -108,7 +108,7 @@
                 outlined
                 color="orange"
                 :to="{
-                  name: 'dashboard-member-uid',
+                  name: 'admin-dashboard-member-uid',
                   params: { uid: person.userId },
                 }"
               >

@@ -37,7 +37,7 @@ export default {
       this.$fire.auth
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          this.$router.push({ name: 'dashboard' })
+          this.$router.push({ name: 'admin' })
           this.error = false
           this.errorMsg = ''
           //console.log(this.$fire.auth.currentUser.uid)
