@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="getLine.pictureUrl">
     <v-app-bar color="primary" dense flat dark>
       <v-toolbar-title>Adara Agent</v-toolbar-title>
     </v-app-bar>
@@ -50,8 +50,8 @@
 
 <script>
 export default {
-  mounted() {
-    liff
+  async mounted() {
+    await liff
       .init({
         liffId: '1656228840-yn8XQ9ar',
       })
