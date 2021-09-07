@@ -5,8 +5,8 @@
       ></v-app-bar-nav-icon>
       <v-toolbar-title class="text-left">Adara</v-toolbar-title>
       <v-spacer></v-spacer>
-      <div v-if="checkRoute" @click="goBack">
-        <v-icon>mdi-arrow-left</v-icon>
+      <div v-if="checkRoute" :to="{name: 'admin'}">
+        <v-icon>mdi-home-outlinet</v-icon>
       </div>
     </v-app-bar>
 </template>

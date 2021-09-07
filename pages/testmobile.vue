@@ -6,14 +6,14 @@
     <v-list>
       <v-list-item class="px-6 pb-3">
           <div class="module-border-wrap">
-            <!-- <img src="~/assets/profile.png" alt="" width="86px" /> -->
-            <img
+            <img src="~/assets/profile.png" alt="" width="86px" />
+            <!-- <img
             v-if="getMember.profile.pictureUrl == null"
             src="~/assets/profile.png"
             alt=""
             width="120px"
           />
-          <img v-else :src="getMember.profile.pictureUrl" alt="" width="120px" />
+          <img v-else :src="getMember.profile.pictureUrl" alt="" width="120px" /> -->
           </div>
           
         <!-- <v-badge
@@ -26,7 +26,7 @@
         >
         </v-badge> -->
         <v-list-item-content>
-          <v-list-item-title class="text-h6">{{
+          <!-- <v-list-item-title class="text-h6">{{
             getMember.profile.firstname
           }} {{
             getMember.profile.lastname
@@ -38,16 +38,20 @@
           >
           <v-list-item-subtitle
             ><v-icon>mdi-cellphone</v-icon>{{getMember.profile.phone}}</v-list-item-subtitle
-          >
-          <!-- <v-list-item-title class="text-h6"> Sandara Adams </v-list-item-title>
+          > -->
+          <v-list-item-title class="text-h6"> Sandara Adams </v-list-item-title>
 
+          <v-list-item-subtitle
+            ><v-icon>mdi-account-supervisor</v-icon>
+            ประเภท: <span class="text-primary">ไม่สต๊อก</span></v-list-item-subtitle
+          >
           <v-list-item-subtitle
             ><v-icon>mdi-email</v-icon>
             sandra_a88@gmail.com</v-list-item-subtitle
           >
           <v-list-item-subtitle
             ><v-icon>mdi-cellphone</v-icon>099-999-9999</v-list-item-subtitle
-          > -->
+          >
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -56,10 +60,10 @@
       <v-btn outlined rounded text> แก้ไขข้อมูล </v-btn>
     </div>
     <div class="d-flex flex-column justify-center px-10 py-3">
-      <p class="font-weight-bold"><span class="text-primary">ยอดสั่งซื้อ:</span> {{ getMember.totalOrder }}</p>
-      <p class="font-weight-bold"><span class="text-primary">ยอดเงินสุทธิ:</span> {{ getMember.netTotal }}</p>
-      <!-- <p class="font-weight-bold"><span class="text-primary">ยอดสั่งซื้อ:</span> 1</p>
-      <p class="font-weight-bold"><span class="text-primary">ยอดเงินสุทธิ:</span> 340</p> -->
+      <!-- <p class="font-weight-bold"><span class="text-primary">ยอดสั่งซื้อ:</span> {{ getMember.totalOrder }}</p>
+      <p class="font-weight-bold"><span class="text-primary">ยอดเงินสุทธิ:</span> {{ getMember.netTotal }}</p> -->
+      <p class="font-weight-bold"><span class="text-primary">ยอดสั่งซื้อ:</span> 1</p>
+      <p class="font-weight-bold"><span class="text-primary">ยอดเงินสุทธิ:</span> 340</p>
     </div>
     <div class="d-flex flex-column justify-center px-10 card-member">
       <div class="d-flex justify-space-between">
@@ -102,7 +106,9 @@
         </p>
       </div>
     </div>
-    <v-btn color="primary" dark class="mt-4 my-btn mx-4">
+    <v-btn color="primary" dark class="mt-4 my-btn mx-4"
+        href="https://adarabeautythailand.page365.net/"
+    >
       สั่งซื้อสินค้า
     </v-btn>
     <v-btn color="grey lighten-4" disabled class="mt-4 my-btn mx-4">

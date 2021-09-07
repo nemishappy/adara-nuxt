@@ -18,12 +18,10 @@
           <img v-else :src="getLine.pictureUrl" alt="" width="155" />
         </v-col>
         <v-col cols="12" class="text-center pt-2 pb-0">
-          {{ getLine.displayName }}
+          {{getMember.profile.firstname}} {{getMember.profile.lastname}}
         </v-col>
         <v-col cols="12">
           <v-form>
-            
-
             <v-btn
               rounded
               color="primary"
@@ -63,6 +61,9 @@ export default {
     getLine() {
       return this.$store.getters.getLine
     },
+    getMember() {
+      return this.$store.getters.getMember
+    },
   },
   data() {
     return {
@@ -70,34 +71,6 @@ export default {
     }
   },
   methods: {
-    isDone() {
-      const usersRef = this.$fire.firestore
-        .collection('member')
-        .doc(this.$store.getters.getLine.userId)
-      usersRef.get().then((docSnapshot) => {
-        if (docSnapshot.exists) {
-          usersRef.onSnapshot((doc) => {
-            this.$store.dispatch('setMember', doc.data())
-            console.log('Document catch!')
-            // do stuff with the data
-          })
-        } else {
-          // create the document
-          usersRef
-            .set({
-              profile: this.$store.getters.getLine,
-              totalOrder: 5,
-              netTotal: 999,
-            })
-            .then(() => {
-              console.log('Document successfully written!')
-            })
-            .catch((error) => {
-              console.log('Error getting document:', error)
-            })
-        }
-      })
-    },
     
     next() {
       this.$router.push('/member/report')

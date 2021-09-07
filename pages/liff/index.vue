@@ -1,49 +1,17 @@
 <template>
-  <div v-if="getLine.pictureUrl">
+  <div >
     <v-app-bar color="primary" dense flat dark>
       <v-toolbar-title>Adara Agent</v-toolbar-title>
     </v-app-bar>
     <v-container class="pt-0 pb-0">
-      <v-row>
-        <v-col cols="12">
-          <div class="mt-8 text-primary text-title text-center">Hi there,</div>
-          <div class="text-center text-primary pt-2 pb-0">{{ getLine.displayName }}</div>
-        </v-col>
-        <v-col cols="12" class="text-center pb-0 profile-img">
-          <img
-            v-if="!getLine.pictureUrl"
-            src="~/assets/profile.png"
-            alt=""
-            width="155"
-          />
-          <img v-else :src="getLine.pictureUrl" alt="" width="155" />
-        </v-col>
-
-        <v-col cols="12" class="pt-2">
-          <v-form>
-              <p class="text-center text-main mb-0 mt-4">เข้าสู่ระบบ</p>
-            <v-btn
-              rounded
-              color="primary"
-              dark
-              class="w-100 mt-4 my-btn"
-              @click="login"
-              >Login</v-btn
-            >
-            
-            <hr class="mt-10" />
-            <p class="text-center text-main mb-0 mt-4">สมัครตัวแทน</p>
-            <v-btn
-              rounded
-              color="#303030"
-              dark
-              class="w-100 mt-4 my-btn"
-              @click="register"
-              >Register</v-btn
-            >
-          </v-form>
-        </v-col>
-      </v-row>
+      <v-overlay
+      :opacity="0.4"
+      :value="overlay"
+    >
+      <v-progress-circular indeterminate size="64">
+        Loading...
+      </v-progress-circular>
+    </v-overlay>
     </v-container>
   </div>
 </template>
@@ -75,6 +43,7 @@ export default {
   data() {
     return {
       uid: this.$store.getters.getLine.userId,
+      overlay: true,
     }
   },
   methods: {
@@ -87,18 +56,20 @@ export default {
           usersRef.onSnapshot((doc) => {
             this.$store.dispatch('setMember', doc.data())
             console.log('Document catch!')
+            this.overlay = false
             this.login()
           })
         } else {
-          this.register()
+            this.overlay = false
+            this.register()
         }
       })
     },
     register() {
-      this.$router.push('/register')
+      this.$router.push('/liff/2')
     },
     login() {
-        this.$router.push('/auth/login')
+        this.$router.push('/member/login')
     },
   },
 }

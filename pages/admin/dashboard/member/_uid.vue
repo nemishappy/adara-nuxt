@@ -138,7 +138,7 @@ export default {
               title: 'Save successful',
               message: 'Press Close to continue',
             })
-            this.$router.push({name: 'dashboard'})
+            this.$router.push({name: 'admin-dashboard'})
             
             return;
         }

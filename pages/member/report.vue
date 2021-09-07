@@ -31,7 +31,10 @@
           }} {{
             getMember.profile.lastname
           }}</v-list-item-title>
-
+          <v-list-item-subtitle
+            ><v-icon>mdi-account-supervisor</v-icon>
+            ประเภท: <span class="text-primary">{{getMember.memberType}}</span></v-list-item-subtitle
+          >
           <v-list-item-subtitle
             ><v-icon>mdi-email</v-icon>
             {{getMember.profile.email}}</v-list-item-subtitle
@@ -102,7 +105,9 @@
         </p>
       </div>
     </div>
-    <v-btn color="primary" dark class="mt-4 my-btn mx-4">
+    <v-btn color="primary" dark class="mt-4 my-btn mx-4"
+      href="https://adarabeautythailand.page365.net/"
+    >
       สั่งซื้อสินค้า
     </v-btn>
     <v-btn color="grey lighten-4" disabled class="mt-4 my-btn mx-4">
