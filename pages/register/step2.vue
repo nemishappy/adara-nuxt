@@ -187,7 +187,7 @@ export default {
         province_code: null,
       },
 
-      agentType: ['สต๊อค', 'ไม่สต๊อค', 'ฝากส่ง'],
+      agentType: ['สต็อก', 'ไม่สต็อก', 'ฝากส่ง'],
       selectedAgentType: '',
     }
   },

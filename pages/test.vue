@@ -1,296 +1,144 @@
 <template>
-  <div>
-    <v-toolbar class="mt-5 pb-5 bb" flat>
-      <v-app-bar-nav-icon
-        class="hidden-md-and-up"
-        @click="toggleMobileNav"
-      ></v-app-bar-nav-icon>
-      <v-toolbar-title class="toolbar-title">
-        <span class="caption">Overview Dashboard</span><br />Tranding View
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <div @click="signOut" class="option">
-        <v-icon>mdi-logout</v-icon>
-      </div>
-    </v-toolbar>
-    <v-container class="d-flex flex-column pa-100">
-      <v-card class="d-flex flex-row pa-2" color="#b0b0b0" tile>
-        <v-icon>mdi-account-edit-outline</v-icon>
-        <h3>Edit Member</h3>
-      </v-card>
-      <v-divider></v-divider>
-      <v-card class="d-flex flex-row" tile>
-        <div class="row1">
-          <v-list>
-            <v-list-item class="px-2">
-              <v-badge
-                bottom
-                left
-                overlap
-                offset-x="35"
-                offset-y="35"
-                icon="mdi-account-check-outline"
-              >
-              <div class="module-border-wrap">
-                <img src="~/assets/profile.png" alt="" width="82px" />
-              </div>
-              </v-badge>
-              <v-list-item-content>
-                <v-list-item-title class="text-h6">
-                  Sandra Adams
-                </v-list-item-title>
-                <v-list-item-subtitle><v-icon>mdi-email</v-icon> sandra_a88@gmail.com</v-list-item-subtitle>
-                <v-list-item-subtitle><v-icon>mdi-cellphone</v-icon>099-999-9999</v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-          <div class="d-flex justify-space-between px-7 pb-3 button">
-            <v-btn outlined rounded text> ดูเพิ่มเติม </v-btn>
-            <v-btn outlined rounded text> แก้ไขข้อมูล </v-btn>
-          </div>
-          <div class="d-flex flex-column justify-center px-10 card-member">
-            <div class="d-flex justify-space-between">
-              <p class="text--secondary">ระดับสมาชิก</p> <p class="font-weight-bold text-primary">Admin</p>
-            </div>
-            <v-card class="d-flex justify-center"
-            color="grey lighten-4" 
-            height="154px"
-            >
-              <v-icon x-large>mdi-crown</v-icon>
-            </v-card>
-            <p class="text-center mt-2">Exp. 31/12/2020</p>
-          </div>
-          <div class="d-flex flex-column justify-center px-3">
-            <v-progress-linear
-              class="exp"
-              :value="this.exp"
-              color="rgb(255, 136, 0)"
-              height="20"
-              rounded
-              striped
-              readonly
-            ></v-progress-linear>
-            <div class="d-flex flex-row justify-space-between">
-              <div class="d-flex flex-row ">
-                <v-icon
-                color="yellow">mdi-star</v-icon> <p class="font-weight-bold text-center my-auto ml-2"><span class="text-primary">{{ exp }}</span>/100</p>
-              </div>
-              <p class="text--secondary text-caption text-right my-auto">สะสมอีก {{ 100-exp }}
-                <v-icon small>mdi-star</v-icon>
-                <br/> เพื่อปรับเป็นระดับ <span class="text--primary font-weight-bold">Super Admin</span></p>
-            </div>
-          </div>
-          <v-btn class="align-self-center mt-3 mb-5 my-button redc" min-width="180"> logout </v-btn>
-        </div>
-        <v-divider width="2px" vertical></v-divider>
-        <div class="row2">
-          <v-card 
-          class="d-flex flex-column pa-3 card-round func-background"
-          color="grey lighten-4" 
-          elevation="0"          
-          max-width="600px"
+  <div  v-if="getMember">
+    <v-app-bar color="primary" dense flat dark>
+      <v-toolbar-items><v-icon @click="goBack">mdi-arrow-left</v-icon></v-toolbar-items>
+      <v-toolbar-title>Marketplace</v-toolbar-title>
+      <v-toolbar-items>
+        <v-badge
+          :content="messages"
+          :value="messages"
+          color="error"
+          overlap
+          offset-x="15"
+          offset-y="22"
+          class="d-flex justify-center"
+        >
+          <v-icon >
+            mdi-cart-outline
+          </v-icon>
+        </v-badge>
+      </v-toolbar-items>
+    </v-app-bar>
+    <div class="d-flex flex-column mt-4 mx-3">
+      <v-card
+        class="d-flex flex-row myProduct"
+        max-width="344"
+        outlined
+      >
+        <img src="~/assets/testsqr.jpg"  width="144" />
+        <div class="ma-3 tDesc">
+          <div class="text-h5">Product 1</div>
+          <div class="green--text text-body-1"><span class="text-body-2 grey--text text-decoration-line-through">210 ฿</span> 150.00 ฿</div>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="orange darken-1"
+            rounded
+            class="ml-auto white--text font-weight-bold"
           >
-            <div>ฟังก์ชั้น</div>
-            <div class="d-flex func-row ">
-              <v-card 
-                class="d-flex flex-column justify-center mr menu card-round card-grow"
-                @click="test"
-              >
-                <img
-                  class="align-self-center"
-                  src="~/assets/icons/chart.png"
-                  alt=""
-                  width="84px"
-                />
-                <v-card-title>
-                  dashboard
-                </v-card-title>
-              </v-card>
-              <v-card 
-                class="d-flex flex-column justify-center menu card-round card-grow"
-                @click="test"
-              >
-                <img
-                  class="align-self-center"
-                  src="~/assets/icons/megaphone.png"
-                  alt=""
-                  width="84px"
-                />
-                <v-card-title>
-                  promotion
-                </v-card-title>
-              </v-card>
-            </div>
-            <div class="d-flex func-row">
-              <v-card 
-                class="d-flex flex-column justify-center menu card-round card-grow2"
-                @click="test"
-              >
-                <img
-                  class="align-self-center"
-                  src="~/assets/icons/chart.png"
-                  alt=""
-                  width="84px"
-                />
-                <v-card-title>
-                  dashboard
-                </v-card-title>
-              </v-card>
-              <v-card 
-                class="d-flex flex-column justify-center mx menu card-round card-grow2"
-                @click="test"
-              >
-                <img
-                  class="align-self-center"
-                  src="~/assets/icons/megaphone.png"
-                  alt=""
-                  width="84px"
-                />
-                <v-card-title>
-                  promotion
-                </v-card-title>
-              </v-card>
-              <v-card 
-                class="d-flex flex-column justify-center menu card-round card-grow2"
-                @click="test"
-              >
-                <img
-                  class="align-self-center"
-                  src="~/assets/icons/chart.png"
-                  alt=""
-                  width="84px"
-                />
-                <v-card-title>
-                  dashboard
-                </v-card-title>
-              </v-card>
-            </div>         
-          </v-card>
+            <v-icon left>mdi-cart-arrow-down</v-icon>
+            add to cart
+          </v-btn>
         </div>
       </v-card>
-    </v-container>
+      <v-card
+        class="d-flex flex-row myProduct my-4"
+        max-width="344"
+        outlined
+      >
+        <img src="~/assets/testsqr.jpg"  width="144" />
+        <div class="ma-3 tDesc">
+          <div class="text-h5">Product 2</div>
+          <div class="green--text text-body-1"><span class="text-body-2 grey--text text-decoration-line-through">210 ฿</span> 150.00 ฿</div>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="orange darken-1"
+            rounded
+            class="ml-auto white--text font-weight-bold"
+          >
+            <v-icon left>mdi-cart-arrow-down</v-icon>
+            add to cart
+          </v-btn>
+        </div>
+      </v-card>
+      <v-card
+        class="d-flex flex-row myProduct"
+        max-width="344"
+        outlined
+      >
+        <img src="~/assets/testsqr.jpg"  width="144" />
+        <div class="ma-3 tDesc">
+          <div class="text-h5">Product 3</div>
+          <div class="green--text text-body-1"><span class="text-body-2 grey--text text-decoration-line-through">210 ฿</span> 150.00 ฿</div>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="orange darken-1"
+            rounded
+            class="ml-auto white--text font-weight-bold"
+          >
+            <v-icon left>mdi-cart-arrow-down</v-icon>
+            add to cart
+          </v-btn>
+        </div>
+      </v-card>
+    </div>
+    <div class="w-100 text-center my-btn outlined text-primary mt-5" @click="test">Close</div> 
   </div>
 </template>
 
 <script>
 export default {
+  mounted() {
+    this.isDone()
+  },
   data() {
     return {
-      exp: 20,
+      messages: 1,
+      memberType:'ไม่สต็อก'
     }
+  },
+  computed: {
+    getMember() {
+      return this.$store.getters.getMember
+    },
   },
   methods: {
-    signOut() {
-      this.$fire.auth.signOut()
-      this.$router.push({ name: 'auth-loginadmin' })
+      test() {
+          console.log(this.memberType == this.getMember.memberType);
+      },
+      isDone() {
+        const usersRef = this.$fire.firestore
+          .collection('member')
+          .doc('Ub8a592b82a17a79e4a5fcb05414d7cd2')
+        usersRef.get().then((docSnapshot) => {
+          if (docSnapshot.exists) {
+            usersRef.onSnapshot((doc) => {
+              this.$store.dispatch('setMember', doc.data())
+              console.log('Document catch!')
+              
+              
+            })
+          } else {
+              
+          }
+        })
+      },
+      goBack() {
+        this.$router.go(-1)
+      }
     },
-    toggleMobileNav() {
-      this.$store.dispatch('setDrawer', !this.$store.getters.getDrawer)
-    },
-    test(){
-      console.log("test");
-    }
-  },
 }
 </script>
 
 <style lang="scss" scoped>
-.bb {
-  border-bottom: 1px solid;
-}
-.pa-100 {
-  padding: 100px;
-}
-.windows {
-  border: 1px solid;
-  border-radius: 25px;
-}
-.row1 {
-  flex-basis: 33%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  
-  .module-border-wrap {
+.myProduct {
+  img {
+    flex-basis: 45%;
+  }
+  .tDesc {
     display: flex;
-    justify-content: center;
-    border: 10px transparent;
-    border-radius: 100%;
-    background-image: linear-gradient(128deg, rgb(255, 136, 0), rgb(240, 62, 240));
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    padding: 10px;
-    
-    img {
-      
-      padding: 2px;
-    }
-  }
-  .exp{
-    border-radius: 25px;
-  }
-  .my-button{
-    font-size: 20px !important;
-    text-transform: none !important;
-    border-radius: 5px;
-    font-weight: bold;
-    color: #fff;
-    &.redc {
-      background-color:#ff3535;
-    }
-  }
-}
-.row2 {
-  flex-basis: 67%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .card-round {
-    border-radius: 10px;
-    &.card-grow {
-      flex-basis: 47%;
-      align-items: center;
-    }
-    &.card-grow2 {
-      max-width: 100%;
-      align-items: center;
-      @media (min-width: 900px) {
-        max-width: 80%;
-      }
-    }
-  }
-  .func-row {
+    flex-basis: 55%;
     flex-direction: column;
-    justify-content: space-between;
-    .menu {
-      padding: 20px 20px;
-      margin: 16px;
-      
-      img {
-        margin-top: 16px;
-      }
-      @media (min-width: 900px) {
-        margin: 0px;
-        width: 100%;
-      }
-    }
-    @media (min-width: 900px) {
-      margin-top: 16px;
-      justify-content: space-between;
-      flex-direction: row;
-      .mr {
-        margin-right: auto;
-      }
-      .mx {
-        margin: 0 auto;
-      }
-    }
-  }
-  .func-background {
-    width: fit-content; 
-    @media (min-width: 900px) {
-        width: 100%;
-    }
+    width: auto;
   }
 }
 </style>

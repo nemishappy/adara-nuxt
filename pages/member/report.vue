@@ -149,4 +149,43 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.row1 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .module-border-wrap {
+    display: flex;
+    justify-content: center;
+    border: 10px transparent;
+    border-radius: 100%;
+    background-image: linear-gradient(
+      128deg,
+      rgb(255, 136, 0),
+      rgb(240, 62, 240)
+    );
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    padding: 10px;
+
+    img {
+      padding: 2px;
+      border-radius: 50%;
+    }
+  }
+  .exp {
+    border-radius: 25px;
+  }
+  .my-button {
+    font-size: 20px !important;
+    text-transform: none !important;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #fff;
+    &.redc {
+      background-color: #ff3535;
+    }
+  }
+}
+</style>

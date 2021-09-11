@@ -1,14 +1,40 @@
 <template>
   <div class="home" v-if="this.$store.getters.getMemberLoaded">
-    
-    <v-container class="mt-5">
+    <v-container class="mt-0">
       <div>
+        <v-list>
+          <v-list-item class="px-2">
+            <div class="module-border-wrap">
+              <img src="~/assets/profile.png" alt="" width="62px" />
+            </div>
+            <v-list-item-content>
+              <v-list-item-title class="text-h6">
+                Sandara Adams
+              </v-list-item-title>
+
+              <v-list-item-subtitle
+                ><v-icon>mdi-email</v-icon>
+                sandra_a88@gmail.com</v-list-item-subtitle
+              >
+              <v-list-item-subtitle
+                ><v-icon>mdi-cellphone</v-icon
+                >099-999-9999</v-list-item-subtitle
+              >
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
         <v-card
-          class="d-flex justify-space-around align-self-center mb-6 block-wrapper"
+          class="
+            d-flex
+            justify-space-around
+            align-self-center
+            mb-6
+            block-wrapper
+          "
           flat
           tile
         >
-          <v-card class="pa-2 my-3 mx-1 my-card" color="cyan darken-1"  >
+          <v-card class="pa-2 my-3 mx-1 my-card" color="cyan darken-1">
             <v-list-item three-line>
               <v-list-item-content>
                 <div class="white--text mb-4">ยอดเงินสุทธิทั้งหมด</div>
@@ -26,10 +52,10 @@
               >
             </v-list-item>
           </v-card>
-          <v-card class="pa-2 my-3 mx-1 my-card" color="pink darken-1" >
+          <v-card class="pa-2 my-3 mx-1 my-card" color="pink darken-1">
             <v-list-item three-line>
               <v-list-item-content>
-                <div class=" white--text mb-4">ยอดออร์เดอร์สั่งซื้อทั้งหมด</div>
+                <div class="white--text mb-4">ยอดออร์เดอร์สั่งซื้อทั้งหมด</div>
                 <v-list-item-title class="text-h5 white--text mb-1">
                   {{ getMember.map(amount_o).reduce(sum) }}
                 </v-list-item-title>
@@ -44,7 +70,7 @@
               >
             </v-list-item>
           </v-card>
-          <v-card class="pa-2 my-3 mx-1 my-card" color="orange darken-1" >
+          <v-card class="pa-2 my-3 mx-1 my-card" color="orange darken-1">
             <v-list-item three-line>
               <v-list-item-content>
                 <div class="white--text mb-4">ตัวแทนทั้งหมด</div>
@@ -62,63 +88,54 @@
               >
             </v-list-item>
           </v-card>
+          <v-card class="pa-2 my-3 mx-1 my-card" color="red lighten-1">
+            <v-list-item three-line>
+              <v-list-item-content>
+                <div class="white--text mb-4">ขาดทุน</div>
+                <v-list-item-title class="text-h5 white--text mb-1">
+                  {{ getMember.length }}
+                </v-list-item-title>
+              </v-list-item-content>
+              <v-list-item-avatar
+                class="align-self-center"
+                size="50"
+                color="red lighten-3"
+                ><v-icon color="white"
+                  >mdi-account-check-outline</v-icon
+                ></v-list-item-avatar
+              >
+            </v-list-item>
+          </v-card>
         </v-card>
       </div>
-      <v-layout row wrap>
-        <v-flex
-          xs12
-          sm6
-          md4
-          lg3
-          v-for="person in getMember"
-          :key="person.userId"
-        >
-          <v-card class="text-center ma-3">
-            <v-responsive class="pt-4">
-              <v-avatar size="100" class="red lighten-2">
-                <img :src="person.pictureUrl" alt="" />
-              </v-avatar>
-            </v-responsive>
-            <v-card-text>
-              <div class="text-title" v-if="person.Name == null">
-                {{ person.displayName }}
-              </div>
-              <div class="text-title" v-else>{{ person.Name }}</div>
-              <div class="text-body-2 mb-3" >{{ person.firstname }} {{ person.lastname }}</div>
-              <div class="text-desc text-left">
-                ยอดสั่งซื้อ: {{ person.totalOrder }}
-              </div>
-              <div class="text-desc text-left">
-                ยอดเงินสุทธิ: {{ person.netTotal }}
-              </div>
-            </v-card-text>
-            <v-card-actions>
-              <v-btn
-                outlined
-                color="orange"
-                :to="{
-                  name: 'admin-dashboard-member-uid',
-                  params: { uid: person.userId },
-                }"
-              >
-                <v-icon small left>mdi-pencil-outline</v-icon>
-                <span>Edit</span>
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-flex>
-      </v-layout>
+      <v-card>
+        <v-card-title>
+          รายชื่อตัวแทน
+          <v-spacer></v-spacer>
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+        </v-card-title>
+        <v-data-table
+          :headers="headers"
+          :items="getMember"
+          :search="search"
+        ></v-data-table>
+      </v-card>
     </v-container>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'dashboard',
   created() {
     this.$store.dispatch('setMembers')
 
-    this.checkScreen()
+    // this.checkScreen()
   },
   computed: {
     getMember() {
@@ -130,42 +147,22 @@ export default {
       mobile: null,
       mobileNav: null,
       windownWidth: null,
-      items: [
+      search: '',
+      headers: [
         {
-          icon: 'mdi-currency-usd',
-          color: 'cyan darken-1',
-          title: 'ยอดเงินสุทธิทั้งหมด',
-          text: '',
+          text: 'ชื่อ',
+          align: 'start',
+          sortable: false,
+          value: 'fullname',
         },
+        { text: 'Email', sortable: false, value: 'email' },
+        { text: 'เบอร์โทรศัพท์', sortable: false, value: 'phone' },
+        { text: 'จำนวนสั่งซื้อ', value: 'totalOrder' },
+        { text: 'ยอดรวม', value: 'netTotal' },
       ],
     }
   },
   methods: {
-    signOut() {
-      this.$fire.auth.signOut()
-      this.$router.push({ name: 'auth-loginadmin' })
-    },
-    checkScreen() {
-      if (typeof window !== 'undefined') {
-        // browser code
-        this.windownWidth = window.innerWidth
-        if (this.windownWidth <= 850) {
-          this.mobile = true
-          this.toggleMobileNav()
-          return
-        }
-        this.mobile = false
-        return
-      }
-      return
-    },
-
-    MobileNav() {
-      this.$store.dispatch('setDrawer', !this.$store.getters.getDrawer)
-    },
-    toggleMobileNav() {
-      this.$store.dispatch('setDrawer', !this.$store.getters.getDrawer)
-    },
     amount_o(item) {
       return item.totalOrder
     },

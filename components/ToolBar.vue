@@ -5,8 +5,8 @@
       ></v-app-bar-nav-icon>
       <v-toolbar-title class="text-left">Adara</v-toolbar-title>
       <v-spacer></v-spacer>
-      <div v-if="checkRoute" :to="{name: 'admin'}">
-        <v-icon>mdi-home-outlinet</v-icon>
+      <div v-if="checkRoute" @click="home">
+        <v-icon>mdi-home-outline</v-icon>
       </div>
     </v-app-bar>
 </template>
@@ -16,13 +16,13 @@
         methods: {
             signOut() {
                 this.$fire.auth.signOut()
-                this.$router.push({ name: 'auth-loginadmin' })
+                this.$router.push({ name: 'admin-login' })
             },
             toggleMobileNav() {
                 this.$store.dispatch('setDrawer', !this.$store.getters.getDrawer)
             },
-            goBack() {
-                this.$router.go(-1)
+            home() {
+                this.$router.push({ name: 'admin' })
             },
             checkRoute() {
                 if(this.$route.name === "admin"){

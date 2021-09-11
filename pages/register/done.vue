@@ -19,7 +19,7 @@
                 ขอบคุณที่สมัครเป็นตัวแทนกับเรา
               </p>
             </div>
-            <v-btn rounded color="primary" dark class="w-100 mt-10 my-btn" @click="workshop">Back to Login</v-btn>
+            <v-btn rounded color="primary" dark class="w-100 mt-10 my-btn" @click="workshop">Login</v-btn>
             <div class="w-100 text-center my-btn outlined text-primary mt-5" @click="close">Close</div>                    
           </div>
         </v-col>

@@ -146,7 +146,7 @@ export const actions = {
     commit('SET_REGISTER', data)
   },
   async setMembers({ commit, getters }) {
-    const dataBase = this.$fire.firestore.collection("member");
+    const dataBase = this.$fire.firestore.collection("member").orderBy("totalOrder", "desc");
     const dbResults = await dataBase.get();
     dbResults.forEach((doc) => {
       if (!getters.getMembers.some((member) => member.userId === doc.data().profile.userId)) {
@@ -154,6 +154,11 @@ export const actions = {
           userId: doc.data().profile.userId,
           displayName: doc.data().profile.displayName,
           Name: doc.data().Name,
+          firstname: doc.data().profile.firstname,
+          lastname: doc.data().profile.lastname,
+          fullname: doc.data().profile.firstname +' '+ doc.data().profile.lastname,
+          email: doc.data().profile.email,
+          phone: doc.data().profile.phone,
           pictureUrl: doc.data().profile.pictureUrl,
           netTotal: doc.data().netTotal,
           totalOrder: doc.data().totalOrder,
